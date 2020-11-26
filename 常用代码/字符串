@@ -1,0 +1,133 @@
+// StringTest.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+//
+
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+
+
+// string -->  cosnt char* 和 char*
+void String2CharX()
+{
+	// string转const char*
+	string strName = "ccyy i love you";
+	const char* cCharXName = strName.c_str();
+	cout << cCharXName << "+++++++" << endl;
+
+	// const char* 再转 char*
+	const int length = strName.length();
+	char* charXName = new char[length + 1];
+	strcpy(charXName, cCharXName);
+	cout << charXName << "+++++++" << endl;
+
+	// const char* 转 string
+	const char* cCharXAge = "ccyy i love you";
+	string strAge1 = cCharXAge;
+	string strAge2(cCharXAge);
+	cout << strAge1 << "+++++++" << endl;
+	cout << strAge2 << "+++++++" << endl;
+
+
+	// char* 转 string
+	string strSex = charXName;
+	cout << strSex << "-------" << endl;
+}
+
+
+// char[] 与 string, const char*, char* 之间的互转
+void char2String()
+{
+	// char[] 转char* ,直接赋值即可
+	char name[] = "ccyy 0731";
+	char* charXName = name;
+	cout << "char[] 转char* ,直接赋值即可" << endl;
+	cout << name << endl;
+	cout << charXName << endl;
+
+	// char* 转 char[], strcpy
+	const char* cCharXAge = "miemie";
+	char* charXAge = new char[50];
+	char Age[100];
+	strcpy(charXAge, cCharXAge);
+	strcpy(Age, charXAge);
+
+	cout << Age << "-----------" << endl;
+
+	
+	// char[] 转 string
+	string strAge = name;
+	cout << strAge << "/////////////" << endl;
+
+	// string 转 char[]
+	char addr[100];
+	strcpy(addr, strAge.c_str());
+	cout << addr << "oooooooooooo" << endl;
+
+
+	// char[] 转 const char *
+	char sex[100] = "ccyy 1151330";
+	const char* cCharXSex = sex;
+	cout << cCharXSex << "xxxxxxx" << endl;
+}
+
+void CCharX2CharX()
+{
+	// const char* 转 char* 用strcpy
+	const char* cCharXName = "ccyy i love you";
+	char* charXName = new char[100];	// 足够长
+	strcpy(charXName, cCharXName);
+	cout << charXName << "+++++++" << endl;
+
+	// char* 转 const char*
+	const char* cCharXAge = charXName;
+	cout << charXName << "+++++++" << endl;
+}
+
+// int转字符
+void Int2char()
+{
+	// int 转 string
+	int name = 100;
+	string strName = to_string(name);
+	cout << strName << ".............." << endl;
+
+	// string 转 int
+	// 方法一， string 转 char*, 再 _itoa 转 int
+
+	// 方法二， 用stringstream
+	stringstream ss;
+	string bank = "1000";
+	int bankmoney;
+	ss << bank;	// 向ss中输入bank
+	ss >> bankmoney;
+	cout << bankmoney << "*********" << endl;
+	ss.clear();
+
+	ss << 1234;
+	ss >> bank;
+	cout << bank << "ccyy" << endl;
+
+
+	// int 转 char*
+	char* money = new char[10];
+	_itoa(name, money, 10);			// 10进制
+	cout << money << "+++++++++" << endl;
+
+	// char* 转 int
+	int height = atoi(money);
+	cout << height << "///////////" << endl;
+}
+
+int main()
+{
+    std::cout << "Hello World!\n";
+
+	//String2CharX();
+	//CCharX2CharX();
+	//char2String();
+	Int2char();
+	return 0;
+}
+
